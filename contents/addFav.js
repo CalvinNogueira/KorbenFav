@@ -34,10 +34,14 @@
       const contentDiv = element.querySelector(".article-card-content");
       const korbenFavDiv = document.createElement("div");
       korbenFavDiv.classList.add("korbenFav");
-      korbenFavDiv.textContent = "★";
+
+      const korbenFavStar = document.createElement("span");
+      korbenFavStar.classList.add("korbenFavStar");
+      korbenFavStar.textContent = "★";
+      korbenFavDiv.append(korbenFavStar);
 
       contentDiv.append(korbenFavDiv);
-      listenClickFavButton(korbenFavDiv, element);
+      listenClickFavButton(korbenFavStar, element);
     }
     debugLog("[KorbenFav] Boutons générés.");
   }

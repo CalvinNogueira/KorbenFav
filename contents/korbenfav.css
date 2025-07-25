@@ -2,15 +2,23 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   text-align: right;
-  font-size: 35px;
-  user-select: none;
-  cursor: pointer;
   z-index: 100;
 }
-.korbenFav:hover {
-  color: grey;
+
+.korbenFav span {
+  font-size: 35px;
+  user-select: none;
+  padding: 10px 15px 5px 10px;
+  z-index: 100;
+}
+.korbenFav span:hover {
+  color: #f9e3d1;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .toast {
