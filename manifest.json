@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "KorbenFav",
+  "version": "1.0.0",
+  "author": "Calvin",
+  "description": "KorbenFav - Sauvegarde tes articles favoris de Korben.info et retrouve-les sur le menu de l'extension.",
+  "permissions": ["tabs", "activeTab", "storage", "unlimitedStorage"],
+
+  "icons": {
+    "16": "imgs/icon16.png",
+    "48": "imgs/icon48.png",
+    "128": "imgs/icon128.png"
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "imgs/icon16.png",
+      "48": "imgs/icon48.png",
+      "128": "imgs/icon128.png"
+    },
+    "default_title": "KorbenFav",
+    "default_popup": "popup/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.korben.info/*"],
+      "js": ["contents/addFav.js"],
+      "css": ["contents/korbenfav.css"]
+    }
+  ]
+}
