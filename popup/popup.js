@@ -5,10 +5,9 @@ function debugLog(...args) {
 }
 
 if (typeof browser === "undefined") {
-    var browser = chrome;
+  var browser = chrome;
 }
 document.addEventListener("DOMContentLoaded", async () => {
-
   debugLog("[KorbenFav] Script popup chargé");
 
   // Initialise l'écouteur du bouton "Vider tous les favoris"
@@ -31,22 +30,21 @@ function listenClickDelAllFavs() {
     return;
   }
 
-clearFavs.addEventListener("click", function () {
-  
-  // Supprime les données du stockage
-  browser.storage.local.set({ korbenFavs: [] });
-  
-  // Vide l'affichage
-  const favsList = getFavDiv();
-  favsList.innerHTML = "";
-  
-  // Affiche le message "aucun article"
-  const noArticlesMessage = document.querySelector(".noArticles");
-  if (noArticlesMessage) noArticlesMessage.style.display = "block";
+  clearFavs.addEventListener("click", function () {
+    // Supprime les données du stockage
+    browser.storage.local.set({ korbenFavs: [] });
 
-  sendToast("Tous les favoris ont étés supprimés.");
-  debugLog("[KorbenFav] Tous les favoris ont étés supprimés.");
-});
+    // Vide l'affichage
+    const favsList = getFavDiv();
+    favsList.innerHTML = "";
+
+    // Affiche le message "aucun article"
+    const noArticlesMessage = document.querySelector(".noArticles");
+    if (noArticlesMessage) noArticlesMessage.style.display = "block";
+
+    sendToast("Tous les favoris ont étés supprimés.");
+    debugLog("[KorbenFav] Tous les favoris ont étés supprimés.");
+  });
 }
 
 /**
@@ -64,7 +62,6 @@ function deleteFavByUrl(url, title, domElement) {
 
     // On met à jour le stockage et on retire l'élément du DOM
     browser.storage.local.set({ korbenFavs: updatedFavs }).then(() => {
-      
       if (domElement && domElement.parentNode) {
         domElement.parentNode.removeChild(domElement);
       }
