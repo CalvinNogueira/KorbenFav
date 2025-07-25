@@ -42,6 +42,7 @@ header p {
   text-align: center;
   color: #ccc;
   margin-top: 20px;
+  margin: 20px 10px 0px 10px;
 }
 
 .favorites-list {
