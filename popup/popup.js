@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 function debugLog(...args) {
   if (DEBUG) console.log(...args);
@@ -60,10 +60,19 @@ function deleteFavByUrl(url, title, domElement) {
     // On filtre tous les favoris sauf celui à supprimer
     const updatedFavs = favs.filter((fav) => fav.url !== url);
 
-    // On met à jour le stockage et on retire l'élément du DOM
+    // On met à jour le stockage
     browser.storage.local.set({ korbenFavs: updatedFavs }).then(() => {
+      // On retire l'élément du DOM
       if (domElement && domElement.parentNode) {
         domElement.parentNode.removeChild(domElement);
+      }
+
+      // Vérifie s'il reste des favoris et affiche le message si nécessaire
+      if (updatedFavs.length === 0) {
+        const noArticlesMessage = document.querySelector(".noArticles");
+        if (noArticlesMessage) {
+          noArticlesMessage.style.display = "block";
+        }
       }
 
       sendToast(`Article supprimé : ${title}`);
