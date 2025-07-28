@@ -6,6 +6,13 @@
   "description": "KorbenFav - Sauvegarde tes articles favoris de Korben.info et retrouve-les sur le menu de l'extension.",
   "permissions": ["tabs", "activeTab", "storage", "unlimitedStorage"],
 
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "korbenfav@calvinnogueira",
+      "strict_min_version": "109.0"
+    }
+  },
+
   "icons": {
     "16": "imgs/icon16.png",
     "48": "imgs/icon48.png",

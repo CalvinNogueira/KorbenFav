@@ -16,9 +16,13 @@
   z-index: 100;
 }
 .korbenFav span:hover {
-  color: #f9e3d1;
+  color: #f47b20;
   cursor: pointer;
   transition: all 0.2s;
+}
+
+.favInList {
+    color: #f47b20;
 }
 
 .toast {
