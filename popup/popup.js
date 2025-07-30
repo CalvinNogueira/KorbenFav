@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 function debugLog(...args) {
   if (DEBUG) console.log(...args);
@@ -44,6 +44,13 @@ function listenClickDelAllFavs() {
 
     sendToast("Tous les favoris ont étés supprimés.");
     debugLog("[KorbenFav] Tous les favoris ont étés supprimés.");
+
+    // Correction : retire toutes les classes favInList
+    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+      browser.tabs.sendMessage(tabs[0].id, {
+        action: "removeAllFavClass",
+      });
+    });
   });
 }
 
@@ -77,6 +84,13 @@ function deleteFavByUrl(url, title, domElement) {
 
       sendToast(`Article supprimé : ${title}`);
       debugLog(`[KorbenFav] Article supprimé : ${title}`);
+
+      browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        browser.tabs.sendMessage(tabs[0].id, {
+          action: "removeFavClass",
+          url: url,
+        });
+      });
     });
   });
 }

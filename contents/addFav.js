@@ -131,5 +131,24 @@
     if (request.action === "showToast") {
       showToast(request.message);
     }
+    // Ajout : retire la classe favInList sur le bouton étoile correspondant
+    if (request.action === "removeFavClass" && request.url) {
+      const articles = document.getElementsByClassName("article-card");
+      for (const element of articles) {
+        const linkEl = element.querySelector("a");
+        if (linkEl) {
+          debugLog(`[KorbenFav] Comparaison : ${linkEl.href} === ${request.url}`);
+          if (linkEl.href === request.url) {
+            const star = element.querySelector(".korbenFavStar");
+            if (star) star.classList.remove("favInList");
+          }
+        }
+      }
+    }
+    // Ajout pour tout retirer
+    if (request.action === "removeAllFavClass") {
+      const stars = document.querySelectorAll(".korbenFavStar.favInList");
+      stars.forEach((star) => star.classList.remove("favInList"));
+    }
   });
 })();
