@@ -137,7 +137,9 @@
       for (const element of articles) {
         const linkEl = element.querySelector("a");
         if (linkEl) {
-          debugLog(`[KorbenFav] Comparaison : ${linkEl.href} === ${request.url}`);
+          debugLog(
+            `[KorbenFav] Comparaison : ${linkEl.href} === ${request.url}`
+          );
           if (linkEl.href === request.url) {
             const star = element.querySelector(".korbenFavStar");
             if (star) star.classList.remove("favInList");
