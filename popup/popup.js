@@ -109,6 +109,7 @@ function getFavDiv() {
  * @param {HTMLElement} favsDiv - Conteneur HTML des favoris
  */
 function createHTMLFavElements(favs, favsDiv) {
+  favsDiv.innerHTML = ""; // Nettoie le conteneur
   for (const element of favs) {
     const favItem = document.createElement("div");
     favItem.classList.add("fav-item");
@@ -145,6 +146,7 @@ function createHTMLFavElements(favs, favsDiv) {
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
     deleteBtn.setAttribute("title", "Supprimer");
+    deleteBtn.setAttribute("aria-label", `Supprimer le favori ${element.title}`);
     deleteBtn.textContent = "✕";
 
     deleteBtn.addEventListener("click", (e) => {
