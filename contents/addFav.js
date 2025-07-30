@@ -16,7 +16,7 @@
   }
   window.hasRun = true;
   if (typeof browser === "undefined") {
-    browser = chrome;
+    var browser = chrome;
   }
   // Ajout des boutons
   async function addFavButtons() {
