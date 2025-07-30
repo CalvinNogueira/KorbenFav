@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "KorbenFav",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Calvin",
   "description": "KorbenFav - Sauvegarde tes articles favoris de Korben.info et retrouve-les sur le menu de l'extension.",
   "permissions": ["tabs", "activeTab", "storage", "unlimitedStorage"],
