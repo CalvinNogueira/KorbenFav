@@ -4,7 +4,7 @@
 
 **KorbenFav** est une extension pour navigateur qui permet de sauvegarder vos articles préférés du site [Korben.info](https://korben.info) et de les retrouver facilement depuis une popup dédiée.
 
-> Compatible Firefox, Chrome, Edge, etc.
+<a href="https://chromewebstore.google.com/detail/gghjoadknebadlmnnimghfaddjahkaob?utm_source=item-share-cb" rel="nofollow"><img src="https://camo.githubusercontent.com/6ccbbcb67875ceb7d0debb51242a3eb282dc94553cbfdbdaa4a284884ea5b756/68747470733a2f2f646576656c6f7065722e6368726f6d652e636f6d2f7374617469632f646f63732f77656273746f72652f6272616e64696e672f696d6167652f3230367835382d6368726f6d652d7765622d626362383264313562323438362e706e67" alt="Available in the Chrome Web Store" data-canonical-src="https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-bcb82d15b2486.png" style="max-width: 100%;"></a>
 
 ---
 
