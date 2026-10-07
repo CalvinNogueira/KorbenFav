@@ -20,18 +20,23 @@
   }
   // Ajout des boutons
   async function addFavButtons() {
-    const articles = document.getElementsByClassName("article-card");
-    if (articles.length === 0) {
-      debugLog("[KorbenFav] Aucun article trouvé.");
-      return;
-    }
+    const articles = document.querySelectorAll(".article-card, .recent-article-card");
+    if (articles.length === 0) return;
 
-    // Récupération des favoris déjà enregistrés
     const result = await browser.storage.local.get("korbenFavs");
     const favs = result.korbenFavs || [];
 
     for (const element of articles) {
-      const contentDiv = element.querySelector(".article-card-content");
+      if (element.querySelector(".korbenFav")) continue;
+
+      const contentDiv = element.querySelector(".article-card-content")
+          || element.querySelector(".recent-article-content");
+
+     if (!contentDiv) continue;
+
+      const linkEl = element.querySelector("h2 a, h3 a, a.recent-article-link, a");
+      if (!linkEl) continue;
+
       const korbenFavDiv = document.createElement("div");
       korbenFavDiv.classList.add("korbenFav");
 
@@ -39,9 +44,7 @@
       korbenFavStar.classList.add("korbenFavStar");
       korbenFavStar.textContent = "★";
 
-      // Vérifie si l’article est déjà en favoris
-      const linkEl = element.querySelector("a");
-      if (linkEl && favs.some((f) => f.url === linkEl.href)) {
+      if (favs.some((f) => f.url === linkEl.href)) {
         korbenFavStar.classList.add("favInList");
       }
 
@@ -49,8 +52,6 @@
       contentDiv.append(korbenFavDiv);
       listenClickFavButton(korbenFavStar, element);
     }
-
-    debugLog("[KorbenFav] Boutons générés.");
   }
 
   function listenClickFavButton(btn, article) {
@@ -62,28 +63,27 @@
   }
 
   async function storeFav(articleElement, btn) {
-    const titleEl = articleElement.querySelector("h2");
-    const linkEl = articleElement.querySelector("a");
-    const imageEl = articleElement.querySelector(".article-card-image img");
+    // Supporte h2 (grands articles) et h3 (articles "À ne pas manquer")
+    const titleEl = articleElement.querySelector("h2, h3");
+    const linkEl = articleElement.querySelector("h2 a, h3 a, a.recent-article-link, a");
+    const imageEl = articleElement.querySelector("img");
 
-    if (!titleEl || !linkEl || !imageEl) return;
+    if (!titleEl || !linkEl) return;
 
     const fav = {
       title: titleEl.textContent.trim(),
       url: linkEl.href,
-      imageUrl: imageEl.src,
+      imageUrl: imageEl ? imageEl.src : "",
     };
 
     const result = await browser.storage.local.get("korbenFavs");
     const favs = result.korbenFavs || [];
 
-    // Empêche les doublons
     if (!favs.some((f) => f.url === fav.url)) {
       favs.push(fav);
       await browser.storage.local.set({ korbenFavs: favs });
       btn.classList.add("favInList");
       showToast(`L'article : ${fav.title} a été ajouté à vos favoris.`);
-      debugLog(`[KorbenFav] Favori ajouté : "${fav.title}" ${fav.imageUrl}`);
     } else {
       deleteFavByUrl(fav.url, fav.title, btn);
     }
